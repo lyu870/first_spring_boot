@@ -6,30 +6,29 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 @Entity
-public class Article {
+public class Member {
     @Id
     @GeneratedValue
-    private Long id;
+    Long id;
 
     @Column
-    private String title;
+    String email;
 
     @Column
-    private String content;
+    String password;
 
-    public Article(Long id, String content, String title) {
+    public Member(Long id, String email, String password) {
         this.id = id;
-        this.content = content;
-        this.title = title;
+        this.email = email;
+        this.password = password;
     }
 
     @Override
     public String toString() {
-        return "Article{" +
+        return "Member{" +
                 "id=" + id +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }
-
