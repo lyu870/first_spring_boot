@@ -70,4 +70,33 @@ public class ArticleController {
         // 3. 뷰 페이지 반환하기
         return "articles/index";
     }
+
+    @GetMapping("/articles/{id}/edit")
+    public String edit(@PathVariable Long id, Model model) {
+        // 수정할 데이터 가져오기
+        Article articleEntity = articleRepository.findById(id).orElse(null);
+
+        // 모델에 데이터 등록하기
+        model.addAttribute("article", articleEntity);
+
+        // 뷰 페이지 설정하기
+        return "articles/edit";
+    }
+
+    @PostMapping("/articles/update")
+    public String update(ArticleForm form) {
+        
+        // 1. DTO를 엔티티로 변환
+        Article articleEntity = form.toEntity();
+        log.info(articleEntity.toString());
+        // 2. 엔티티를 DB에 저장
+        Article target = articleRepository.findById(articleEntity.getId()).orElse(null);
+
+        if(target != null) { // 수정 시 입력대상의 존재여부가 없다면 저장하지않음
+            articleRepository.save(articleEntity);
+        }
+
+        // 3. 수정 결과 페이지로 리다이렉트
+        return "redirect:/articles/" + articleEntity.getId();
+    }
 }
