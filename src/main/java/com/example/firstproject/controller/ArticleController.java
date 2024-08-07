@@ -92,7 +92,7 @@ public class ArticleController {
         // 2. 엔티티를 DB에 저장
         Article target = articleRepository.findById(articleEntity.getId()).orElse(null);
 
-        if(target != null) { // 수정 시 입력대상의 존재여부가 없다면 저장하지않음
+        if(target != null) { // 수정 시 입력대상의 존재여부가 있을 때에만 저장하기
             articleRepository.save(articleEntity);
         }
 
