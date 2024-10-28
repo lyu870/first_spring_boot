@@ -34,7 +34,7 @@ public class MemberController {
         log.info(member.toString());
         Member saved = memberRepository.save(member);
         log.info(saved.toString());
-        return "";
+        return "redirect:/members/" + saved.getId();
     }
 
     @GetMapping("/members/{id}")
@@ -46,7 +46,7 @@ public class MemberController {
 
     @GetMapping("/members")
     public String index(Model model) {
-        Iterable<Member> members = memberRepository.findAll();
+        List<Member> members = memberRepository.findAll();
         model.addAttribute("members", members);
         return "members/index";
     }
