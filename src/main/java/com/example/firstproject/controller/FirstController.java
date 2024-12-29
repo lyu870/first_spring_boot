@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class FirstController {
 
+    // git 테스트
     @GetMapping("/hi")
     public String niceToMeetYou(Model model) {
         model.addAttribute("username", "dieb");
