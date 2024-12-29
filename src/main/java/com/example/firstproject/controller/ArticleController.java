@@ -17,7 +17,7 @@ import java.util.List;
 @Slf4j
 @Controller
 public class ArticleController {
-    @Autowired
+    @Autowired // 스프링부트가 미리 생성해놓은 객체를 가져다가 자동 연결 해주는 어노테이션
     private ArticleRepository articleRepository;
 
     @GetMapping("/articles/new")
@@ -25,7 +25,7 @@ public class ArticleController {
         return "articles/new";
     }
 
-    @PostMapping("/articles/create")
+    @PostMapping("/articles/create") // 데이터 생성
     public String createArticle(ArticleForm form) {
         log.info(form.toString());
         // System.out.println(form.toString());
@@ -40,10 +40,10 @@ public class ArticleController {
         log.info(saved.toString());
         // System.out.println(saved.toString());
 
-        return "redirect:/articles/" + saved.getId();
+        return "redirect:/articles/" + saved.getId(); // 등록한 게시글의 id가 3이면 articles/3으로 이동.
     }
 
-    @GetMapping("/articles/{id}")
+    @GetMapping("/articles/{id}") // 데이터 단일조회
     public String show(@PathVariable Long id, Model model) {
         // ↑ PathVariable은 URL요청으로 들어온 전달값을 컨트롤러의 매개변수로 가져오는 어노테이션
         log.info("id = " + id);
@@ -58,7 +58,7 @@ public class ArticleController {
         return "articles/show";
     }
 
-    @GetMapping("/articles")
+    @GetMapping("/articles") // 데이터 목록조회
     public String index(Model model) {
 
         // 1. 모든 데이터 가져오기
