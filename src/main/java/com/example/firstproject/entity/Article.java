@@ -12,6 +12,7 @@ import lombok.ToString;
 @Entity
 @Getter
 public class Article {
+    // 데이터를 생성할 때마다 DB가 알아서 id에 1, 2, 3등의 값을 넣어줌.
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
