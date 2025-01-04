@@ -23,7 +23,7 @@ public class Article {
     @Column
     private String content;
 
-    public void patch(Article article) {
+    public void patch(Article article) { // → 대상이 null이 아닐때만 저장(업데이트)
         if (article.title != null)
             this.title = article.title;
         if (article.content != null)
