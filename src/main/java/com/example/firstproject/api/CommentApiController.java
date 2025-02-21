@@ -13,6 +13,7 @@ import java.util.List;
 public class CommentApiController {
     @Autowired
     private CommentService commentService;
+
     // 댓글 목록 조회
     @GetMapping("/api/articles/{articleId}/comments")
     public ResponseEntity<List<CommentDto>> comments(@PathVariable Long articleId) {

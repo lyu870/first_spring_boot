@@ -19,7 +19,8 @@ public class CommentService {
     private CommentRepository commentRepository;
     @Autowired
     private ArticleRepository articleRepository;
-
+    
+    // 댓글조회
     public List<CommentDto> comments(Long articleId) {
 /*        // 1. 조회: 댓글 목록
         List<Comment> comments = commentRepository.findByArticleId(articleId);
@@ -33,12 +34,13 @@ public class CommentService {
 
         // 위처럼 for문으로 처리할 수도 있지만 보통 아래의 스트림문법을 사용.
         // 3. 반환
-        return commentRepository.findByArticleId(articleId)
-                .stream()
-                .map(comment -> CommentDto.createCommentDto(comment))
-                .collect(Collectors.toList());
+        return commentRepository.findByArticleId(articleId) // 1. articleId에 속하는 댓글데이터 리스트를 가져옴.
+                .stream() // 2. 리스트를 스트림으로 변환.
+                .map(comment -> CommentDto.createCommentDto(comment)) // 3. 각 댓글을 dto로 변환
+                .collect(Collectors.toList()); // 4. 변환된 dto를 리스트로 수집
     }
 
+    // 댓글생성
     @Transactional
     public CommentDto create(Long articleId, CommentDto dto) {
         // 게시글 조회 및 예외 발생
@@ -52,6 +54,7 @@ public class CommentService {
         return CommentDto.createCommentDto(created);
     }
 
+    // 댓글수정
     @Transactional
     public CommentDto update(Long id, CommentDto dto) {
         // 댓글 조회 및 예외 발생
@@ -65,6 +68,7 @@ public class CommentService {
         return CommentDto.createCommentDto(updated);
     }
 
+    // 댓글삭제
     @Transactional
     public CommentDto delete(Long id) {
         // 댓글 조회(및 예외 발생)
