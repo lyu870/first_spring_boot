@@ -1,6 +1,7 @@
 package com.example.firstproject.dto;
 
 import com.example.firstproject.entity.Comment;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 @AllArgsConstructor
@@ -9,6 +10,8 @@ import lombok.*;
 @ToString
 public class CommentDto {
     private Long id;
+
+    @JsonProperty("article_id")
     private Long articleId;
     private String nickname;
     private String body;
@@ -22,3 +25,4 @@ public class CommentDto {
         );
     }
 }
+

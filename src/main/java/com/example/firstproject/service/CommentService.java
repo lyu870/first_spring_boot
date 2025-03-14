@@ -22,7 +22,7 @@ public class CommentService {
     
     // 댓글조회
     public List<CommentDto> comments(Long articleId) {
-/*        // 1. 조회: 댓글 목록
+/*      // 1. 조회: 댓글 목록
         List<Comment> comments = commentRepository.findByArticleId(articleId);
         // 2. 변환: 엔티티 -> DTO
         List<CommentDto> dtos = new ArrayList<CommentDto>();
